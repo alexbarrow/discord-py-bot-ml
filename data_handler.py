@@ -1,6 +1,6 @@
 import pandas as pd
 
-from data_dict import cf2_list, cf3_list, data_url, ml_data_url, fplot_url
+from data_dict import cf2_list, cf3_list, data_url, ml_data_url
 from ml_data import mldata_add
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -100,14 +100,14 @@ def content_handler_ai(ctx):
     return 'ok', [num_feat1, num_feat2, num_feat3, cat_feat1, cat_feat2, cat_feat3]
 
 
-def content_check(ctx, m):
-    if m is 'a':
+def content_check(ctx, mode):
+    if mode is 'a':
         fl, ctx_list = content_handler(ctx)
         if fl is not 'ok':
             return fl
         return ctx_list
 
-    elif m is 'p':
+    elif mode is 'p':
         fl, ctx_list = content_handler_ai(ctx)
         if fl is not 'ok':
             return fl

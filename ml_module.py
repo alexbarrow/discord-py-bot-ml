@@ -32,7 +32,7 @@ def ml_rf_pred(ctx):
     return prob, pred
 
 
-def simple_model_tune_funct():
+def simple_model_tune():
     n_est = [75, 100, 128, 256]
     min_s_l = [1, 2, 0.5]
     max_d = [None, 1]
@@ -47,5 +47,5 @@ def simple_model_tune_funct():
 
 if __name__ == '__main__':
     print('Testing..')
-    simple_model_tune_funct()
+    simple_model_tune()
     # print(ml_rf_acc())

@@ -107,7 +107,7 @@ async def on_message(message):
         if message.content.startswith('#stat'):
             content, channel = message.content.split()[1:], message.channel
 
-            res = content_check(content, m='a')
+            res = content_check(content, mode='a')
             if res == 'len':
                 await channel.send('Wrong the input len.')
             elif res == 'err':
@@ -127,7 +127,7 @@ async def on_message(message):
         if message.content.startswith('#pred'):
             content, channel = message.content.split()[1:], message.channel
 
-            res = content_check(content, m='p')
+            res = content_check(content, mode='p')
             if res == 'len':
                 await channel.send('Wrong the input len.')
             elif res == 'err':

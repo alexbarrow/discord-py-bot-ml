@@ -7,6 +7,10 @@ from data_dict import cf2_list, cf3_list, data_url, ml_data_url
 
 
 def dprep_train_set():
+    """
+    Creates LabelEncoders, transforms original data and saves them.
+    Run this function when you add new categorical variables to cat_feat2/cat_feat3 to transform new data
+    """
     train = pd.read_csv(data_url)
 
     lbl_cf2, lbl_cf3 = LabelEncoder(), LabelEncoder()
@@ -26,6 +30,9 @@ def dprep_train_set():
 
 
 def mldata_add(ctx):
+    """
+    Transforms new entry by saved encoders
+    """
     tmp = ctx.copy()
     with open('ml_data/le_cf2.pickle', "rb") as pickle_in:
         lbl_cf2 = pickle.load(pickle_in)
