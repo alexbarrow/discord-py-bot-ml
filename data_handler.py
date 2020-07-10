@@ -123,7 +123,18 @@ def get_dist(feat_name, url_plot, url_data=data_url):
     fig.savefig(url_plot)
 
 
+def get_prop_plot(feat_name, url_plot, url_data=data_url, target='Result'):
+    train = pd.read_csv(url_data)
+    fig, ax = plt.subplots()
+    prop_plot = train.groupby(feat_name)[target].value_counts(normalize=True).unstack()
+    prop_plot = prop_plot.sort_values(by=1, ascending=False)
+    prop_plot.plot(kind='bar', stacked='True', color=["#3f3e6fd1", "#85c6a9"], ax=ax)
+    plt.legend(('Lose', 'Win'))
+    plt.title('Proportion of Win/Lose by cat_feat2', fontsize=12)
+    fig.savefig(url_plot)
+
+
 if __name__ == '__main__':
     print("Testing...")
     # df = pd.read_csv(data_url)
-    # print(df.shape)
+

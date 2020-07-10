@@ -1,9 +1,9 @@
 import discord
 
 from data_dict import cf2_list, cf3_list
-from data_dict import get_str_from_dict, fplot_url
+from data_dict import get_str_from_dict, fplot_url, pr_plot_url
 
-from data_handler import data_show_stat, data_show_stat_ext, data_add, content_check, data_size, get_dist
+from data_handler import data_show_stat, data_show_stat_ext, data_add, content_check, data_size, get_dist, get_prop_plot
 
 from ml_module import ml_rf_acc, ml_rf_pred
 
@@ -39,7 +39,8 @@ async def helpstat(ctx):
         emb.add_field(name='{}stat'.format(prefix), value='General stat.')
         emb.add_field(name='{}fstat'.format(prefix), value='Stat on cat_feat2.')
         emb.add_field(name='{}fplot'.format(prefix), value='Count plot for cat_feat2.')
-        emb.add_field(name='{}updplot'.format(prefix), value='Update count plot.')
+        emb.add_field(name='{}pr_plot'.format(prefix), value='Plot of win/lose proportion by cat_feat2.')
+        emb.add_field(name='{}updplots'.format(prefix), value='Update plots.')
         emb.add_field(name='{}tags'.format(prefix), value='All tags for cat_feat2 and cat_feat3.')
 
         await ctx.send(embed=emb)
@@ -87,10 +88,18 @@ async def fplot(ctx):
 
 
 @Bot.command()
-async def updplot(ctx):
+async def pr_plot(ctx):
+    if ctx.message.channel.name == ch_name:
+        url = pr_plot_url + '.png'
+        await ctx.channel.send(file=discord.File(url))
+
+
+@Bot.command()
+async def updplots(ctx):
     if ctx.message.channel.name == ch_name:
         get_dist('cat_feat2', fplot_url)
-        await ctx.send('Plot is updated!')
+        get_prop_plot('cat_feat2', pr_plot_url)
+        await ctx.send('Plots are updated!')
 
 
 @Bot.command()

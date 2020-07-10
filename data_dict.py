@@ -3,6 +3,7 @@ ml_data_url = 'ml_data/data_train.csv'
 test_ml_data_url = 'ml_data/X_test.csv'
 
 fplot_url = 'img/fplot'
+pr_plot_url = 'img/pr_plot'
 
 cf2_list = {
     'x1': 'cf2 value 1',
