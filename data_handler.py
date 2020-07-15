@@ -119,7 +119,7 @@ def content_check(ctx, mode):
 def get_dist(feat_name, url_plot, url_data=data_url):
     train = pd.read_csv(url_data)
     fig, ax = plt.subplots()
-    sns.countplot(train[feat_name], palette='Set3', ax=ax)
+    sns.countplot(train[feat_name], order=train[feat_name].value_counts().index, palette='Set3', ax=ax)
     fig.savefig(url_plot)
 
 
@@ -136,5 +136,4 @@ def get_prop_plot(feat_name, url_plot, url_data=data_url, target='Result'):
 
 if __name__ == '__main__':
     print("Testing...")
-    # df = pd.read_csv(data_url)
 
